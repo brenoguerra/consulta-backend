@@ -1,6 +1,7 @@
 import UserRepository from './repositories/UserRepository'
 import User, { IUser } from '../../models/User'
 import { hash } from 'bcryptjs'
+import AppError from '../../errors/AppError'
 
 type Request = IUser
 
@@ -12,7 +13,7 @@ class CreateUserService {
       username: data.username
     })
 
-    if (usernameIsAvailable) throw new Error('Nome de usuário em uso')
+    if (usernameIsAvailable) throw new AppError('Nome de usuário em uso')
 
     const hashedPassword = await hash(data.password, 8)
     data.password = hashedPassword

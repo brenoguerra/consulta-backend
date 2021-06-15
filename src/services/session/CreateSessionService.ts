@@ -1,5 +1,6 @@
 import SessionRepository from './repositories/SessionRepository'
 import { compare } from 'bcryptjs'
+import AppError from '../../errors/AppError'
 
 import User, { IUser } from '../../models/User'
 
@@ -18,10 +19,10 @@ class CreateSessionService {
     const sessionRepository = new SessionRepository()
 
     const user = await User.findOne({ username: data.username })
-    if (!user) throw new Error('Credenciais inválidas')
+    if (!user) throw new AppError('Credenciais inválidas')
 
     const isCorrectPassword = await compare(data.password, user.password)
-    if (!isCorrectPassword) throw new Error('Credenciais inválidas')
+    if (!isCorrectPassword) throw new AppError('Credenciais inválidas')
 
     user.password = ''
 

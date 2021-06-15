@@ -19,7 +19,10 @@ const UserSchema: Schema = new Schema({
     type: String,
     required: true
   },
-  expireAt: Date,
+  expireAt: {
+    type: Date,
+    default: new Date()
+  },
   role: {
     type: String,
     enum: ['default', 'admin'],
