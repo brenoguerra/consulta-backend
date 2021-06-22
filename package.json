@@ -5,11 +5,11 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "tsc",
-    "watch-node": "nodemon public/server.js",
+    "watch-node": "nodemon dist/server.js",
     "watch-ts": "tsc -w",
     "dev:server": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
     "start": "node src/server.js",
-    "build": "tsc --outDir ./public"
+    "build": "tsc --outDir ./dist"
   },
   "dependencies": {
     "axios": "^0.21.1",
